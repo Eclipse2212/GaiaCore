@@ -1,13 +1,13 @@
 package fr.gaiacraft.gaiacore.database;
 
 import com.google.gson.Gson;
+import fr.gaiacraft.gaiacore.Util.PlayerProfile;
 import fr.gaiacraft.gaiacore.Util.customLogger;
-import fr.gaiacraft.gaiacore.Util.playerProfile;
 
 import java.sql.*;
 import java.util.UUID;
 
-public class databaseManager {
+public class DatabaseManager {
     private static Connection connection;
     private static String TableName = "GaiaMetiers";
     private static Gson gson = new Gson();
@@ -82,7 +82,7 @@ public class databaseManager {
      *
      * @param profile PlayerProfile to save in Database
      */
-    public static void CreateProfile(playerProfile profile) {
+    public static void CreateProfile(PlayerProfile profile) {
         UUID PlayerUUID = profile.getUUID();
 
         final String json = gson.toJson(profile);
@@ -107,9 +107,9 @@ public class databaseManager {
      * @param PlayerUUID
      * @return Player profile loaded from DB
      */
-    public static playerProfile LoadProfile(UUID PlayerUUID) {
+    public static PlayerProfile LoadProfile(UUID PlayerUUID) {
         //DONE: Load profile from SQL and return it (make it public static PlayerProfile LoadProfile(UUID) )
-        playerProfile PLrProfile;
+        PlayerProfile PLrProfile;
         try {
             PreparedStatement state = connection.prepareStatement("SELECT * FROM " +
                     TableName +
@@ -121,11 +121,11 @@ public class databaseManager {
             if(set.next()){
                 //has profile
                 String profile = set.getString("donnees");
-                PLrProfile = gson.fromJson(profile, playerProfile.class);
+                PLrProfile = gson.fromJson(profile, PlayerProfile.class);
                 return PLrProfile;
             }else{
                 //no profile
-                PLrProfile = new playerProfile(PlayerUUID);
+                PLrProfile = new PlayerProfile(PlayerUUID);
                 CreateProfile(PLrProfile);
                 return PLrProfile;
             }
@@ -134,14 +134,14 @@ public class databaseManager {
 
         } catch (SQLException e) {
             customLogger.logWarning("A player has played before but has no profile.");
-            PLrProfile = new playerProfile(PlayerUUID);
+            PLrProfile = new PlayerProfile(PlayerUUID);
             CreateProfile(PLrProfile);
             return PLrProfile;
         }
         //TODO: If player has played but no profile, create one
     }
 
-    public static void SaveProfile(playerProfile profile){
+    public static void SaveProfile(PlayerProfile profile){
         //TODO: make saving logic w/ update SQL query
         UUID PlayerUUID = profile.getUUID();
 

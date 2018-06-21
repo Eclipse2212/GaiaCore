@@ -1,5 +1,5 @@
 name: GaiaCore
-main: fr.gaiacraft.gaiacore.core
+main: fr.gaiacraft.gaiacore.Core
 version: 0.0.1
 author: Eclipse2212 & SecretsMan & Makivarix
-description: Plugin core des modules Gaia-craft.fr
+description: Plugin Core des modules Gaia-craft.fr

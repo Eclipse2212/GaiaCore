@@ -1,16 +1,17 @@
 package fr.gaiacraft.gaiacore;
 
 import fr.gaiacraft.gaiacore.Util.customLogger;
+import fr.gaiacraft.gaiacore.listener.PlayerListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public class core extends JavaPlugin {
+public class Core extends JavaPlugin {
 
     @Override
     public void onEnable(){
         createConfig();
-
+        this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
     }
 
     @Override
@@ -30,6 +31,7 @@ public class core extends JavaPlugin {
             } else {
                 customLogger.logInfo("Config.yml found, loading!");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
 
