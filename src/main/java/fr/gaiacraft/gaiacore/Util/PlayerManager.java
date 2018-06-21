@@ -8,24 +8,25 @@ import java.util.Map;
 import java.util.UUID;
 
 public class PlayerManager {
-    private static Map<UUID, PlayerProfile> PlayerList = new HashMap<>();
+    private DatabaseManager dB = new DatabaseManager();
+    private Map<UUID, PlayerProfile> PlayerList = new HashMap<>();
 
-    public static void AddPlayer(UUID uuid){
-        PlayerProfile prof = DatabaseManager.LoadProfile(uuid);
+    public void AddPlayer(UUID uuid){
+        PlayerProfile prof = dB.LoadProfile(uuid);
         PlayerList.put(uuid, prof);
     }
 
-    public static void AddNewPlayer(UUID uuid){
+    public void AddNewPlayer(UUID uuid){
         PlayerProfile prof = new PlayerProfile(uuid);
         PlayerList.put(uuid, prof);
-        DatabaseManager.CreateProfile(prof);
+        dB.CreateProfile(prof);
     }
 
-    public static void RemovePlayer(UUID uuid){
-        DatabaseManager.SaveProfile(PlayerList.remove(uuid));
+    public void RemovePlayer(UUID uuid){
+        dB.SaveProfile(PlayerList.remove(uuid));
     }
 
-    public static String getProfileData(UUID uuid){
+    public String getProfileData(UUID uuid){
         return PlayerList.get(uuid).toString();
     }
 }

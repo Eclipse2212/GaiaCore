@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import java.util.UUID;
 
 public class PlayerListener implements Listener {
-    
+    private PlayerManager plrMgr = new PlayerManager();
 
     @EventHandler
     public void onPlayerLogin(PlayerJoinEvent ev){
@@ -18,16 +18,16 @@ public class PlayerListener implements Listener {
 
         if(!ev.getPlayer().hasPlayedBefore()){
             //The player is new so we need to create a new entry in the DB
-            PlayerManager.AddNewPlayer(PlayerUUID);
+            plrMgr.AddNewPlayer(PlayerUUID);
         }
         else {
-            PlayerManager.AddPlayer(PlayerUUID);
+            plrMgr.AddPlayer(PlayerUUID);
         }
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent ev){
-        PlayerManager.RemovePlayer(ev.getPlayer().getUniqueId());
+        plrMgr.RemovePlayer(ev.getPlayer().getUniqueId());
 
     }
 }

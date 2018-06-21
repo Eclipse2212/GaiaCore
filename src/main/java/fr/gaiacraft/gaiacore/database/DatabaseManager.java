@@ -8,9 +8,9 @@ import java.sql.*;
 import java.util.UUID;
 
 public class DatabaseManager {
-    private static Connection connection;
-    private static String TableName = "GaiaMetiers";
-    private static Gson gson = new Gson();
+    private  Connection connection;
+    private  String TableName = "GaiaMetiers";
+    private  Gson gson = new Gson();
 
 
     /**
@@ -20,7 +20,7 @@ public class DatabaseManager {
      * @param username Username to use
      * @param password Password to use (preferably get from config)
      */
-    public static void Connect(String url, String username, String password) {
+    public void Connect(String url, String username, String password) {
         try {
             Class.forName("com.mysql.jdbc.Driver"); //Force load Jdbc driver
         } catch (ClassNotFoundException e) {
@@ -46,7 +46,7 @@ public class DatabaseManager {
     /**
      * Create an empty Table in Database. Use only at plugin boot
      */
-    private static void CreateTable() {
+    private void CreateTable() {
         try {
             PreparedStatement state = connection.prepareStatement("CREATE TABLE IF NOT EXISTS "
                     + TableName
@@ -61,7 +61,7 @@ public class DatabaseManager {
     /**
      * Unload MySQL connection
      */
-    public static void Unload() {
+    public void Unload() {
         try { //using a try catch to catch connection errors (like wrong sql password...)
             if (connection != null && !connection.isClosed()) {
 
@@ -82,7 +82,7 @@ public class DatabaseManager {
      *
      * @param profile PlayerProfile to save in Database
      */
-    public static void CreateProfile(PlayerProfile profile) {
+    public void CreateProfile(PlayerProfile profile) {
         UUID PlayerUUID = profile.getUUID();
 
         final String json = gson.toJson(profile);
@@ -104,10 +104,10 @@ public class DatabaseManager {
 
     /**
      * Load player profile from database
-     * @param PlayerUUID
+     * @param PlayerUUID UUID of desired player
      * @return Player profile loaded from DB
      */
-    public static PlayerProfile LoadProfile(UUID PlayerUUID) {
+    public PlayerProfile LoadProfile(UUID PlayerUUID) {
         //DONE: Load profile from SQL and return it (make it public static PlayerProfile LoadProfile(UUID) )
         PlayerProfile PLrProfile;
         try {
@@ -141,7 +141,7 @@ public class DatabaseManager {
         //TODO: If player has played but no profile, create one
     }
 
-    public static void SaveProfile(PlayerProfile profile){
+    public void SaveProfile(PlayerProfile profile){
         //TODO: make saving logic w/ update SQL query
         UUID PlayerUUID = profile.getUUID();
 
