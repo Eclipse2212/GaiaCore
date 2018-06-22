@@ -1,4 +1,4 @@
-package fr.gaiacraft.gaiacore.Util;
+package fr.gaiacraft.gaiacore.util;
 
 import fr.gaiacraft.gaiacore.database.DatabaseManager;
 

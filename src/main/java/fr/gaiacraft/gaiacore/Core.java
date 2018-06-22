@@ -1,6 +1,6 @@
 package fr.gaiacraft.gaiacore;
 
-import fr.gaiacraft.gaiacore.Util.customLogger;
+import fr.gaiacraft.gaiacore.util.customLogger;
 import fr.gaiacraft.gaiacore.listener.PlayerListener;
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -1,7 +1,7 @@
 package fr.gaiacraft.gaiacore.listener;
 
 
-import fr.gaiacraft.gaiacore.Util.PlayerManager;
+import fr.gaiacraft.gaiacore.util.PlayerManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

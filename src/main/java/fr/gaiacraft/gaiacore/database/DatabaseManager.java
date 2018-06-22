@@ -1,8 +1,8 @@
 package fr.gaiacraft.gaiacore.database;
 
 import com.google.gson.Gson;
-import fr.gaiacraft.gaiacore.Util.PlayerProfile;
-import fr.gaiacraft.gaiacore.Util.customLogger;
+import fr.gaiacraft.gaiacore.util.PlayerProfile;
+import fr.gaiacraft.gaiacore.util.customLogger;
 
 import java.sql.*;
 import java.util.UUID;
