@@ -84,7 +84,7 @@ repositories {
 
     //BetonQuest
     maven {
-        url 'http://betonquest.betoncraft.pl/mvn'
+        url 'http://betonquest.pl/mvn'
     }
 }
 
@@ -103,5 +103,8 @@ dependencies {
     //Skript
     compile 'ch.njol:skript:2.2-dev33'
 
+    //BetonQuest
     compile group: 'pl.betoncraft.betonquest', name: 'BetonQuest', version: '1.9'
+
+    compile 'org.hibernate:hibernate-core:5.3.1.Final'
 }
